@@ -1,8 +1,19 @@
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const NotFound = () => {
-  return <Navigate to="/" />;
-  //    <div>Not Found</div>;
+  // returns a function
+  // You should call navigate() in a React.useEffect(), not when your component is first rendered.
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
+  }, []);
+
+  return <div>Not Found</div>;
+  //   <Navigate to="/" />;
 };
 
 export default NotFound;
