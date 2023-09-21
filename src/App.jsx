@@ -1,4 +1,4 @@
-import { Routes, Route, NavLink, Link } from "react-router-dom";
+import { Routes, Route, NavLink, Link, useLocation } from "react-router-dom";
 import Home from "./Home";
 import BookList from "./BookList";
 import Book from "./Book";
@@ -7,6 +7,8 @@ import NotFound from "./NotFound";
 import BookLayout from "./BookLayout";
 
 function App() {
+  const location = useLocation();
+  console.log(location);
   // // uses JS objects instead of route elements
   // const element = useRoutes([
   //   {
@@ -36,6 +38,7 @@ function App() {
           </li>
         </ul>
       </nav>
+      {location.state}
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/books" element={<BookLayout />}>

@@ -8,7 +8,7 @@ const NotFound = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      navigate("/");
+      navigate("/", { state: "Page not found, from state" });
     }, 1000);
   }, []);
 
