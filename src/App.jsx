@@ -1,34 +1,42 @@
-import { Link, useRoutes } from "react-router-dom";
+import { Routes, Route, NavLink, Link } from "react-router-dom";
 import Home from "./Home";
-//import BookList from "./BookList";
-//import Book from "./Book";
-//import NewBook from "./NewBook";
+import BookList from "./BookList";
+import Book from "./Book";
+import NewBook from "./NewBook";
 import NotFound from "./NotFound";
-//import BookLayout from "./BookLayout";
+import BookLayout from "./BookLayout";
 
 function App() {
-  // uses JS objects instead of route elements
-  const element = useRoutes([
-    {
-      path: "/",
-      element: <Home />,
-    },
-    { path: "*", element: <NotFound /> },
-  ]);
+  // // uses JS objects instead of route elements
+  // const element = useRoutes([
+  //   {
+  //     path: "/",
+  //     element: <Home />,
+  //   },
+  //   { path: "*", element: <NotFound /> },
+  // ]);
   return (
     <>
       <nav>
         <ul>
           <li>
-            <Link to="./">Home</Link>
+            <NavLink
+              style={({ isActive }) => {
+                return isActive ? { color: "red" } : null;
+              }}
+              to="/"
+            >
+              {({ isActive }) => {
+                return isActive ? "active home" : "home";
+              }}
+            </NavLink>
           </li>
           <li>
-            <Link to="./books">Books</Link>
+            <Link to="/books">Books</Link>
           </li>
         </ul>
       </nav>
-      {element}
-      {/* <Routes>
+      <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/books" element={<BookLayout />}>
           <Route index element={<BookList />} />
@@ -36,7 +44,7 @@ function App() {
           <Route path="new" element={<NewBook />} />
         </Route>
         <Route path="*" element={<NotFound />} />
-      </Routes> */}
+      </Routes>
     </>
   );
 }
